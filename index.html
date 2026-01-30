@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>❤️ My soulmate ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    text-align:center;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    overflow-x:hidden;
+    transition:0.5s;
+}
+
+/* 🌙 الوضع الليلي */
+body.night{
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:white;
+}
+
+/* ❤️ القلوب / ✨ النجوم */
+.hearts{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:0;
+}
+
+.heart{
+    position:absolute;
+    animation:float 8s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(110vh);opacity:0;}
+    10%{opacity:1;}
+    100%{transform:translateY(-10vh);opacity:0;}
+}
+
+/* 🔐 صفحة الدخول */
+#login{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:1;
+    position:relative;
+}
+
+.box{
+    background:white;
+    color:black;
+    padding:40px;
+    border-radius:20px;
+    width:90%;
+    max-width:350px;
+}
+
+input,button{
+    padding:12px;
+    font-size:18px;
+    border-radius:10px;
+    border:none;
+    width:90%;
+}
+
+button{
+    background:#ff9a9e;
+    color:white;
+    cursor:pointer;
+}
+
+#error{color:red;display:none;}
+
+/* ❤️ الموقع */
+#site{display:none;z-index:1;position:relative;}
+
+header{
+    background:rgba(255,255,255,0.8);
+    padding:30px;
+}
+
+.counter{
+    font-size:20px;
+    margin-top:15px;
+}
+
+/* الصور */
+#photos{display:none;padding:20px;}
+
+img,video{
+    width:90%;
+    max-width:320px;
+    margin:15px auto;
+    display:block;
+    border-radius:15px;
+    box-shadow:0 5px 10px rgba(0,0,0,0.4);
+}
+
+/* الذكريات */
+.memory{
+    background:white;
+    color:black;
+    padding:15px;
+    margin:15px auto;
+    border-radius:15px;
+    max-width:500px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<div id="login">
+    <div class="box">
+        <h2>🔐 دخول خاص</h2>
+        <input type="password" id="password" placeholder="الباسورد">
+        <button onclick="check()">دخول</button>
+        <div id="error">الباسورد غلط 😢</div>
+    </div>
+</div>
+
+<div id="site">
+
+<audio id="music" loop>
+    <source src="love.mp3">
+</audio>
+
+<header>
+    <h1>❤️ My soulmate ❤️</h1>
+    <p>بحبك وبموت فيكي</p>
+    <div class="counter" id="counter"></div>
+</header>
+
+<button onclick="showPhotos()">💖 دوسي هنا علشان تشوفي صورنا 💖</button>
+
+<section id="photos">
+    <h2>صورنا 📸</h2>
+
+    <!-- الصور 1 → 5 -->
+    <img src="image1.jpg"><img src="image2.jpg"><img src="image3.jpg">
+    <img src="image4.jpg"><img src="image5.jpg">
+
+    <!-- 🎬 الفيديو -->
+    <video id="video" controls>
+        <source src="video.mp4">
+    </video>
+
+    <!-- الصور 6 → 25 -->
+    <img src="image6.jpg"><img src="image7.jpg"><img src="image8.jpg">
+    <img src="image9.jpg"><img src="image10.jpg">
+
+    <img src="image11.jpg"><img src="image12.jpg"><img src="image13.jpg">
+    <img src="image14.jpg"><img src="image15.jpg">
+
+    <img src="image16.jpg"><img src="image17.jpg"><img src="image18.jpg">
+    <img src="image19.jpg"><img src="image20.jpg">
+
+    <img src="image21.jpg"><img src="image22.jpg"><img src="image23.jpg">
+    <img src="image24.jpg"><img src="image25.jpg">
+</section>
+
+<section>
+    <h2>ذكرياتنا 💌</h2>
+    <div class="memory">أول مرة شفتك فيها حسيت اننا مهنجين 😂❤️</div>
+    <div class="memory">فاكره لما كنا في بروفة المسرح قولتلك ايه؟ 🥸</div>
+    <div class="memory">دي مش ذكرى… بس متزعليش على أي حاجة 💕</div>
+</section>
+
+</div>
+
+<script>
+function check(){
+    if(password.value==="1912"){
+        login.style.display="none";
+        site.style.display="block";
+        music.play();
+    }else error.style.display="block";
+}
+
+function showPhotos(){
+    photos.style.display="block";
+}
+
+/* ⏳ العداد */
+const start = new Date("2025-07-23T17:00:00");
+setInterval(()=>{
+    const now = new Date();
+    const diff = now - start;
+    const d = Math.floor(diff/86400000);
+    const h = Math.floor(diff/3600000)%24;
+    const m = Math.floor(diff/60000)%60;
+    counter.innerHTML = `عدّى علينا ${d} يوم و ${h} ساعة و ${m} دقيقة ❤️`;
+},1000);
+
+/* 🌙 ليل / نهار */
+if(new Date().getHours()>=18 || new Date().getHours()<6)
+    document.body.classList.add("night");
+
+/* ❤️ / ✨ */
+function createHeart(){
+    const el=document.createElement("div");
+    el.className="heart";
+    el.innerHTML=document.body.classList.contains("night")?"✨":"❤️";
+    el.style.left=Math.random()*100+"vw";
+    el.style.fontSize=15+Math.random()*25+"px";
+    el.style.animationDuration=6+Math.random()*4+"s";
+    hearts.appendChild(el);
+    setTimeout(()=>el.remove(),10000);
+}
+setInterval(createHeart,500);
+
+/* 🎬 الفيديو يوقف الموسيقى */
+video.onplay=()=>music.pause();
+video.onpause=()=>music.play();
+</script>
+
+</body>
+</html>
