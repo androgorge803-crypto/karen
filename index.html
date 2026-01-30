@@ -14,26 +14,22 @@ body{
     overflow-x:hidden;
     transition:0.5s;
 }
-
-/* 🌙 الوضع الليلي */
 body.night{
     background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
     color:white;
 }
 
-/* ================== القلوب / النجوم ================== */
+/* ================== القلوب ================== */
 .hearts{
     position:fixed;
     inset:0;
     pointer-events:none;
     z-index:0;
 }
-
 .heart{
     position:absolute;
     animation:float 8s linear infinite;
 }
-
 @keyframes float{
     0%{transform:translateY(110vh);opacity:0;}
     10%{opacity:1;}
@@ -54,51 +50,30 @@ body.night{
     pointer-events:none;
     z-index:0;
 }
-
-@media(max-width:600px){
-    #loveText{font-size:38px;}
-}
-
 .showLove{
     animation:lovePop 2.5s ease forwards;
 }
-
 @keyframes lovePop{
-    0%{
-        opacity:0;
-        transform:translate(-50%,-50%) scale(0.2);
-        filter:blur(10px);
-    }
-    60%{
-        opacity:1;
-        transform:translate(-50%,-50%) scale(1.1);
-        filter:blur(0);
-    }
-    100%{
-        opacity:0.25;
-        transform:translate(-50%,-50%) scale(1);
-    }
+    0%{opacity:0;transform:translate(-50%,-50%) scale(0.2);filter:blur(10px);}
+    60%{opacity:1;transform:translate(-50%,-50%) scale(1.1);filter:blur(0);}
+    100%{opacity:0.25;transform:translate(-50%,-50%) scale(1);}
 }
 
-/* ================== صفحة الدخول ================== */
+/* ================== الدخول ================== */
 #login{
     height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    position:relative;
-    z-index:1;
+    z-index:2;
 }
-
 .box{
     background:white;
-    color:black;
     padding:40px;
     border-radius:20px;
     width:90%;
     max-width:350px;
 }
-
 input,button{
     padding:12px;
     font-size:18px;
@@ -107,40 +82,47 @@ input,button{
     width:90%;
     margin:10px 0;
 }
-
 button{
     background:#ff9a9e;
     color:white;
     cursor:pointer;
 }
+#error{color:red;display:none;}
 
-#error{
-    color:red;
+/* ================== صفحة الرسالة ================== */
+#messagePage{
+    position:fixed;
+    inset:0;
+    background:radial-gradient(circle,#111,#000);
+    color:white;
     display:none;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    z-index:10;
+    padding:20px;
+}
+#typeText{
+    font-size:30px;
+    line-height:1.9;
+    max-width:650px;
+    text-shadow:0 0 25px rgba(255,255,255,0.8);
+    animation:pulse 2s infinite;
+}
+@keyframes pulse{
+    0%{text-shadow:0 0 10px rgba(255,255,255,0.3);}
+    50%{text-shadow:0 0 30px rgba(255,255,255,0.9);}
+    100%{text-shadow:0 0 10px rgba(255,255,255,0.3);}
 }
 
 /* ================== الموقع ================== */
-#site{
-    display:none;
-    position:relative;
-    z-index:1;
-}
-
+#site{display:none;z-index:1;position:relative;}
 header{
     background:rgba(255,255,255,0.85);
     padding:30px;
 }
-
-.counter{
-    font-size:20px;
-    margin-top:15px;
-}
-
-#photos{
-    display:none;
-    padding:20px;
-}
-
+.counter{font-size:20px;margin-top:15px;}
+#photos{padding:20px;}
 img,video{
     width:90%;
     max-width:320px;
@@ -149,10 +131,8 @@ img,video{
     border-radius:15px;
     box-shadow:0 5px 10px rgba(0,0,0,0.4);
 }
-
 .memory{
     background:white;
-    color:black;
     padding:15px;
     margin:15px auto;
     border-radius:15px;
@@ -163,13 +143,10 @@ img,video{
 
 <body>
 
-<!-- القلوب -->
 <div class="hearts" id="hearts"></div>
-
-<!-- نص الخلفية -->
 <div id="loveText">بحبك يا كارين ❤️</div>
 
-<!-- صفحة الدخول -->
+<!-- الدخول -->
 <div id="login">
     <div class="box">
         <h2>🔐 دخول خاص</h2>
@@ -177,6 +154,11 @@ img,video{
         <button id="loginBtn">دخول</button>
         <div id="error">الباسورد غلط 😢</div>
     </div>
+</div>
+
+<!-- صفحة الرسالة -->
+<div id="messagePage">
+    <div id="typeText"></div>
 </div>
 
 <!-- الموقع -->
@@ -192,11 +174,10 @@ img,video{
     <div class="counter" id="counter"></div>
 </header>
 
-<button onclick="showPhotos()">💖 دوسي هنا علشان تشوفي صورنا 💖</button>
-
 <section id="photos">
     <h2>صورنا 📸</h2>
 
+    <!-- الصور 1 → 25 -->
     <img src="image1.jpg"><img src="image2.jpg"><img src="image3.jpg">
     <img src="image4.jpg"><img src="image5.jpg">
 
@@ -219,7 +200,7 @@ img,video{
 
 <section>
     <h2>ذكرياتنا 💌</h2>
-    <div class="memory">أول مرة شفتك فيها حسيت اننا مهنجين 😂❤️</div>
+    <div class="memory">أول مرة شفتك فيها حسيت إننا مهنجين 😂❤️</div>
     <div class="memory">فاكرة لما كنا في بروفة المسرح؟ 🥸</div>
     <div class="memory">دي مش ذكرى… بس متزعليش على أي حاجة 💕</div>
 </section>
@@ -227,72 +208,81 @@ img,video{
 </div>
 
 <script>
-/* ================== العناصر ================== */
-const password = document.getElementById("password");
-const login = document.getElementById("login");
-const site = document.getElementById("site");
-const error = document.getElementById("error");
-const music = document.getElementById("music");
-const photos = document.getElementById("photos");
-const counter = document.getElementById("counter");
-const hearts = document.getElementById("hearts");
-const video = document.getElementById("video");
-const loveText = document.getElementById("loveText");
-const loginBtn = document.getElementById("loginBtn");
+const loginBtn=document.getElementById("loginBtn");
+const password=document.getElementById("password");
+const login=document.getElementById("login");
+const error=document.getElementById("error");
+const messagePage=document.getElementById("messagePage");
+const typeText=document.getElementById("typeText");
+const site=document.getElementById("site");
+const music=document.getElementById("music");
+const loveText=document.getElementById("loveText");
+const hearts=document.getElementById("hearts");
+const video=document.getElementById("video");
+const counter=document.getElementById("counter");
 
-/* ================== تسجيل الدخول ================== */
-loginBtn.onclick = () => {
-    if(password.value === "1912"){
+const message=`
+كارين…
+في لحظة بسيطة
+دخلتي حياتي وغيرتيها
+ضحكتك أمان
+وصوتك راحة
+ومع كل ثانية…
+بحبك أكتر ❤️
+`;
+let i=0;
+
+loginBtn.onclick=()=>{
+    if(password.value==="1912"){
         login.style.display="none";
-        site.style.display="block";
-        music.play().catch(()=>{});
-
-        setTimeout(()=>{
-            loveText.classList.add("showLove");
-        },2000);
-    }else{
-        error.style.display="block";
-    }
+        messagePage.style.display="flex";
+        typeText.innerHTML="";
+        i=0;
+        typeWriter();
+    }else error.style.display="block";
 };
 
-/* ================== الصور ================== */
-function showPhotos(){
-    photos.style.display="block";
+function typeWriter(){
+    if(i<message.length){
+        typeText.innerHTML+=message.charAt(i);
+        i++;
+        setTimeout(typeWriter,80);
+    }else{
+        setTimeout(()=>{
+            messagePage.style.display="none";
+            site.style.display="block";
+            music.play().catch(()=>{});
+            loveText.classList.add("showLove");
+        },2000);
+    }
 }
 
-/* ================== العداد ================== */
-const start = new Date("2025-07-23T17:00:00");
+/* العداد */
+const start=new Date("2025-07-23T17:00:00");
 setInterval(()=>{
-    const now = new Date();
-    const diff = now - start;
-    const d = Math.floor(diff/86400000);
-    const h = Math.floor(diff/3600000)%24;
-    const m = Math.floor(diff/60000)%60;
-    counter.innerHTML = `نعرف بعض من ${d} يوم و ${h} ساعة و ${m} دقيقة ❤️`;
+    const diff=new Date()-start;
+    const d=Math.floor(diff/86400000);
+    const h=Math.floor(diff/3600000)%24;
+    const m=Math.floor(diff/60000)%60;
+    counter.innerHTML=`نعرف بعض من ${d} يوم و ${h} ساعة و ${m} دقيقة ❤️`;
 },1000);
 
-/* ================== ليل / نهار ================== */
-const hour = new Date().getHours();
-if(hour >= 18 || hour < 6){
-    document.body.classList.add("night");
-}
-
-/* ================== القلوب / النجوم ================== */
+/* القلوب */
 function createHeart(){
-    const el = document.createElement("div");
-    el.className = "heart";
-    el.innerHTML = document.body.classList.contains("night") ? "✨" : "❤️";
-    el.style.left = Math.random()*100 + "vw";
-    el.style.fontSize = 15 + Math.random()*25 + "px";
-    el.style.animationDuration = 6 + Math.random()*4 + "s";
+    const el=document.createElement("div");
+    el.className="heart";
+    el.innerHTML="❤️";
+    el.style.left=Math.random()*100+"vw";
+    el.style.fontSize=15+Math.random()*25+"px";
+    el.style.animationDuration=6+Math.random()*4+"s";
     hearts.appendChild(el);
     setTimeout(()=>el.remove(),10000);
 }
 setInterval(createHeart,500);
 
-/* ================== الفيديو ================== */
-video.onplay = ()=> music.pause();
-video.onpause = ()=> music.play();
+/* الفيديو */
+video.onplay=()=>music.pause();
+video.onpause=()=>music.play();
 </script>
 
 </body>
