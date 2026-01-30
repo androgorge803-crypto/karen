@@ -59,7 +59,7 @@ body.night{
     100%{opacity:0.25;transform:translate(-50%,-50%) scale(1);}
 }
 
-/* ================== الدخول ================== */
+/* ================== صفحة الدخول ================== */
 #login{
     height:100vh;
     display:flex;
@@ -112,8 +112,12 @@ button{
     #typeText{font-size:22px;}
 }
 
-/* ================== الموقع ================== */
-#site{display:none;z-index:1;position:relative;}
+/* ================== الموقع بدون الصور ================== */
+#siteWithoutPhotos{
+    display:none;
+    z-index:1;
+    position:relative;
+}
 header{
     background:rgba(255,255,255,0.85);
     padding:30px;
@@ -135,6 +139,33 @@ img,video{
     border-radius:15px;
     max-width:500px;
 }
+
+/* ================== الصورة مع النص ================== */
+#photoButton{
+    position:relative;
+    width:200px;
+    margin:20px auto;
+    cursor:pointer;
+}
+#photoButton img{
+    width:100%;
+    border-radius:20px;
+    box-shadow:0 5px 10px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease;
+}
+#photoButton:hover img{
+    transform: scale(1.05);
+}
+#photoButton div{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+    text-shadow:0 0 10px rgba(0,0,0,0.7);
+}
 </style>
 </head>
 
@@ -146,7 +177,7 @@ img,video{
 <!-- صفحة الدخول -->
 <div id="login">
     <div class="box">
-        <h2>🔐 دخول خاص</h2>
+        <h2>🔐 احلي بقره اكتبي الباسوورد</h2>
         <input type="password" id="password" placeholder="الباسورد">
         <button id="loginBtn">دخول</button>
         <div id="error">الباسورد غلط 😢</div>
@@ -158,8 +189,8 @@ img,video{
     <div id="typeText"></div>
 </div>
 
-<!-- الموقع -->
-<div id="site">
+<!-- الموقع بدون الصور -->
+<div id="siteWithoutPhotos">
 
 <audio id="music" loop>
     <source src="love.mp3">
@@ -171,12 +202,14 @@ img,video{
     <div class="counter" id="counter"></div>
 </header>
 
-<button onclick="showPhotos()">💖 دوسي هنا علشان تشوفي صورنا 💖</button>
+<!-- الصورة مع النص بدل الزر -->
+<div id="photoButton" onclick="showPhotos()">
+    <img src="myphoto.jpg">
+    <div>😂❤️دوسي عليا</div>
+</div>
 
 <section id="photos">
     <h2>صورنا 📸</h2>
-
-    <!-- الصور 1 → 25 -->
     <img src="image1.jpg"><img src="image2.jpg"><img src="image3.jpg">
     <img src="image4.jpg"><img src="image5.jpg">
     <video id="video" controls>
@@ -209,7 +242,7 @@ const login=document.getElementById("login");
 const error=document.getElementById("error");
 const messagePage=document.getElementById("messagePage");
 const typeText=document.getElementById("typeText");
-const site=document.getElementById("site");
+const siteWithoutPhotos=document.getElementById("siteWithoutPhotos");
 const music=document.getElementById("music");
 const loveText=document.getElementById("loveText");
 const hearts=document.getElementById("hearts");
@@ -221,7 +254,7 @@ const message =
 "كارين…\n\n" +
 "في لحظة بسيطة\n" +
 "دخلتي حياتي وغيرتيها\n" +
-"ضحكتك جنان بصراحه\n" +
+"ضحكتك أمان\n" +
 "وصوتك راحة\n\n" +
 "ومع كل ثانية…\n" +
 "بحبك أكتر ❤️";
@@ -248,11 +281,10 @@ function typeWriter(){
     }else{
         setTimeout(()=>{
             messagePage.style.display="none";
-            site.style.display="block";
+            siteWithoutPhotos.style.display="block";
             loveText.classList.add("showLove");
             music.play().catch(()=>{});
-            // الصور تظل مخفية حتى الضغط على الزر
-            document.getElementById("photos").style.display = "none";
+            document.getElementById("photos").style.display="none";
         },500);
     }
 }
