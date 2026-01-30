@@ -119,7 +119,7 @@ header{
     padding:30px;
 }
 .counter{font-size:20px;margin-top:15px;}
-#photos{padding:20px;}
+#photos{padding:20px; display:none;}
 img,video{
     width:90%;
     max-width:320px;
@@ -221,7 +221,7 @@ const message =
 "كارين…\n\n" +
 "في لحظة بسيطة\n" +
 "دخلتي حياتي وغيرتيها\n" +
-"ضحكتك أمان\n" +
+"ضحكتك جنان بصراحه\n" +
 "وصوتك راحة\n\n" +
 "ومع كل ثانية…\n" +
 "بحبك أكتر ❤️";
@@ -249,9 +249,11 @@ function typeWriter(){
         setTimeout(()=>{
             messagePage.style.display="none";
             site.style.display="block";
-            music.play().catch(()=>{});
             loveText.classList.add("showLove");
-        },2000);
+            music.play().catch(()=>{});
+            // الصور تظل مخفية حتى الضغط على الزر
+            document.getElementById("photos").style.display = "none";
+        },500);
     }
 }
 
